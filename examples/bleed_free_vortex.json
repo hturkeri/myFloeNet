@@ -1,0 +1,176 @@
+{
+  "format": "myflownet",
+  "version": 1,
+  "title": "Compressor bleed - free vortex - shaft",
+  "description": "Air bled through rotating holes in the compressor drum enters the drum cavity with solid-body swirl and flows radially inward as a free vortex (angular momentum conserved): the static pressure drops strongly - the reason vortex reducers are used.  The air then flows along the shaft bore (pipe) to the turbine.",
+  "settings": {
+    "max_iter": 300,
+    "tol_mass": 1e-09,
+    "tol_T": 1e-06,
+    "tol_K": 1e-07,
+    "max_dp_frac": 0.3,
+    "relax_T": 1.0,
+    "relax_V": 1.0,
+    "gas": {
+      "model": "air"
+    }
+  },
+  "display_units": {
+    "pressure": "bar",
+    "temperature": "K",
+    "length": "mm",
+    "area": "mm²",
+    "massflow": "kg/s"
+  },
+  "rotors": [
+    {
+      "id": 1,
+      "name": "HP Rotor",
+      "rpm": 11000.0
+    }
+  ],
+  "chambers": [
+    {
+      "id": 1,
+      "name": "Compressor bleed",
+      "x": -480,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 1200000.0,
+        "p_type": "total",
+        "T": 650.0,
+        "K": 0.6,
+        "ref_rotor": 1,
+        "radius": 0.28,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "name": "Drum cavity (outer)",
+      "x": -200,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 1.0,
+        "ref_rotor": 1,
+        "radius": 0.27,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "Shaft bore inlet",
+      "x": 80,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.15,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "name": "Turbine disc cavity",
+      "x": 360,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 300000.0,
+        "p_type": "static",
+        "T": 700.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "type": "orifice",
+      "name": "Bleed holes",
+      "a": 1,
+      "b": 2,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 30,
+        "diameter": 0.008,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.7,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 1,
+        "r_a": 0.28,
+        "r_b": 0.27,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "type": "vortex",
+      "name": "Free vortex (radial inflow)",
+      "a": 2,
+      "b": 3,
+      "bend": 0.0,
+      "params": {
+        "vortex_type": "free",
+        "rotor": 1,
+        "r_a": 0.27,
+        "r_b": 0.15,
+        "swirl_source": "upstream",
+        "K": 1.0,
+        "work": "none",
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "type": "pipe",
+      "name": "Shaft bore",
+      "a": 3,
+      "b": 4,
+      "bend": 0.0,
+      "params": {
+        "n_pipes": 1,
+        "length": 1.2,
+        "diameter": 0.08,
+        "diameter_b": 0.0,
+        "roughness": 2e-05,
+        "K_in": 0.3,
+        "f_mult": 1.0,
+        "heat_mode": "adiabatic",
+        "T_wall": 600.0,
+        "htc_mult": 1.0,
+        "n_seg": 12,
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+{
+  "format": "myflownet",
+  "version": 1,
+  "title": "HP turbine pre-swirl cooling system",
+  "description": "Direct-transfer pre-swirl system: stationary pre-swirl nozzles feed a rotating receiver-hole row; the cover-plate cavity (forced vortex, K = 1) pumps the air up to the blade feed; radial rotating blade passages discharge to the gas path. Inner and outer labyrinths leak from the pre-swirl chamber; the outer leakage passes a rotor-stator wheel-space and leaves through the rim seal.",
+  "settings": {
+    "max_iter": 300,
+    "tol_mass": 1e-09,
+    "tol_T": 1e-06,
+    "tol_K": 1e-07,
+    "max_dp_frac": 0.3,
+    "relax_T": 1.0,
+    "relax_V": 1.0,
+    "gas": {
+      "model": "air"
+    }
+  },
+  "display_units": {
+    "pressure": "bar",
+    "temperature": "K",
+    "length": "mm",
+    "area": "mm²",
+    "massflow": "kg/s"
+  },
+  "rotors": [
+    {
+      "id": 1,
+      "name": "HP Rotor",
+      "rpm": 12000.0
+    }
+  ],
+  "chambers": [
+    {
+      "id": 1,
+      "name": "Compressor delivery",
+      "x": -640,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 2500000.0,
+        "p_type": "total",
+        "T": 800.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "name": "Pre-swirl chamber",
+      "x": -340,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.25,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "Cover-plate inlet",
+      "x": -40,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 1.0,
+        "ref_rotor": 1,
+        "radius": 0.25,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "name": "Blade feed",
+      "x": 260,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 1.0,
+        "ref_rotor": 1,
+        "radius": 0.3,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 5,
+      "name": "Blade exit (gas path)",
+      "x": 560,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 1400000.0,
+        "p_type": "static",
+        "T": 1300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 6,
+      "name": "Bearing chamber vent",
+      "x": -340,
+      "y": 280,
+      "params": {
+        "kind": "boundary",
+        "p": 900000.0,
+        "p_type": "static",
+        "T": 600.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 7,
+      "name": "Upper wheel-space",
+      "x": -340,
+      "y": -300,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.28,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 8,
+      "name": "Rim cavity",
+      "x": -40,
+      "y": -300,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.34,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 9,
+      "name": "Annulus",
+      "x": 260,
+      "y": -300,
+      "params": {
+        "kind": "boundary",
+        "p": 1500000.0,
+        "p_type": "static",
+        "T": 1200.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.35,
+        "heat_W": 0.0
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "type": "orifice",
+      "name": "Pre-swirl nozzles",
+      "a": 1,
+      "b": 2,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 24,
+        "diameter": 0.007,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.9,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.25,
+        "r_b": 0.25,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 75.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "type": "orifice",
+      "name": "Receiver holes",
+      "a": 2,
+      "b": 3,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 48,
+        "diameter": 0.008,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.75,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 1,
+        "r_a": 0.25,
+        "r_b": 0.25,
+        "dq_in": 0.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "type": "vortex",
+      "name": "Cover-plate cavity",
+      "a": 3,
+      "b": 4,
+      "bend": 0.0,
+      "params": {
+        "vortex_type": "forced",
+        "rotor": 1,
+        "r_a": 0.25,
+        "r_b": 0.3,
+        "swirl_source": "fixed",
+        "K": 1.0,
+        "work": "rotor",
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "type": "pipe",
+      "name": "Blade passages",
+      "a": 4,
+      "b": 5,
+      "bend": 0.0,
+      "params": {
+        "n_pipes": 80,
+        "length": 0.06,
+        "diameter": 0.003,
+        "diameter_b": 0.0,
+        "roughness": 0.0,
+        "K_in": 0.6,
+        "f_mult": 1.0,
+        "heat_mode": "adiabatic",
+        "T_wall": 600.0,
+        "htc_mult": 1.0,
+        "n_seg": 12,
+        "rotor": 1,
+        "r_a": 0.3,
+        "r_b": 0.36,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 5,
+      "type": "labyrinth",
+      "name": "Inner labyrinth",
+      "a": 2,
+      "b": 6,
+      "bend": 0.0,
+      "params": {
+        "n_teeth": 4,
+        "radius": 0.2,
+        "clearance": 0.00035,
+        "pitch": 0.004,
+        "tip_width": 0.0003,
+        "model": "tbt",
+        "tooth_eq": "st_venant",
+        "cd_model": "chaplygin",
+        "cd": 0.71,
+        "carryover": "vermes",
+        "cd_mult": 1.0,
+        "wet_area_factor": 1.5,
+        "dT_max": 200.0,
+        "rotor": 1,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 6,
+      "type": "labyrinth",
+      "name": "Outer labyrinth",
+      "a": 2,
+      "b": 7,
+      "bend": 0.0,
+      "params": {
+        "n_teeth": 3,
+        "radius": 0.28,
+        "clearance": 0.0004,
+        "pitch": 0.004,
+        "tip_width": 0.0003,
+        "model": "tbt",
+        "tooth_eq": "st_venant",
+        "cd_model": "chaplygin",
+        "cd": 0.71,
+        "carryover": "vermes",
+        "cd_mult": 1.0,
+        "wet_area_factor": 1.5,
+        "dT_max": 200.0,
+        "rotor": 1,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 7,
+      "type": "cavity",
+      "name": "Rotor-stator wheel-space",
+      "a": 7,
+      "b": 8,
+      "bend": 0.0,
+      "params": {
+        "rotor": 1,
+        "r_a": 0.28,
+        "r_b": 0.34,
+        "gap": 0.005,
+        "second_wall": "stator",
+        "friction_model": "daily_nece",
+        "K0": 0.426,
+        "cf_rotor_mult": 1.0,
+        "cf_stator_mult": 1.0,
+        "swirl_source": "upstream",
+        "K_in": 0.0,
+        "dT_max": 300.0,
+        "n_seg": 20,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 8,
+      "type": "orifice",
+      "name": "Rim seal",
+      "a": 8,
+      "b": 9,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 1,
+        "diameter": 0.005,
+        "area_override": 0.0006,
+        "cd_mode": "constant",
+        "cd": 0.6,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.34,
+        "r_b": 0.34,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ]
+}

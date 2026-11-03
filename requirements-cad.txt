@@ -1,0 +1,3 @@
+# Optional: STEP / IGES / BREP background geometry (OpenCASCADE).
+# If no wheel exists for your Python version, use instead:  python -m pip install gmsh
+cadquery-ocp

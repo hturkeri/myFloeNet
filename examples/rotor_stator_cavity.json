@@ -1,0 +1,180 @@
+{
+  "format": "myflownet",
+  "version": 1,
+  "title": "Rotor-stator cavity with radial outflow",
+  "description": "Air enters a rotor-stator wheel-space at low radius, flows radially outward through the cavity (1D radial march) and leaves through the rim seal.",
+  "settings": {
+    "max_iter": 300,
+    "tol_mass": 1e-09,
+    "tol_T": 1e-06,
+    "tol_K": 1e-07,
+    "max_dp_frac": 0.3,
+    "relax_T": 1.0,
+    "relax_V": 1.0,
+    "gas": {
+      "model": "air"
+    }
+  },
+  "display_units": {
+    "pressure": "bar",
+    "temperature": "K",
+    "length": "mm",
+    "area": "mm²",
+    "massflow": "kg/s"
+  },
+  "rotors": [
+    {
+      "id": 1,
+      "name": "HP Rotor",
+      "rpm": 9000.0
+    }
+  ],
+  "chambers": [
+    {
+      "id": 1,
+      "name": "Bore supply",
+      "x": -450,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 600000.0,
+        "p_type": "total",
+        "T": 550.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "name": "Cavity inlet",
+      "x": -150,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.08,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "Rim cavity",
+      "x": 150,
+      "y": 0,
+      "params": {
+        "kind": "inertial",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.25,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "name": "Annulus",
+      "x": 450,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 520000.0,
+        "p_type": "static",
+        "T": 900.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.26,
+        "heat_W": 0.0
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "type": "orifice",
+      "name": "Inlet holes",
+      "a": 1,
+      "b": 2,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 12,
+        "diameter": 0.006,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.65,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.08,
+        "r_b": 0.08,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "type": "cavity",
+      "name": "Wheel-space",
+      "a": 2,
+      "b": 3,
+      "bend": 0.0,
+      "params": {
+        "rotor": 1,
+        "r_a": 0.08,
+        "r_b": 0.25,
+        "gap": 0.006,
+        "second_wall": "stator",
+        "friction_model": "daily_nece",
+        "K0": 0.426,
+        "cf_rotor_mult": 1.0,
+        "cf_stator_mult": 1.0,
+        "swirl_source": "upstream",
+        "K_in": 0.0,
+        "dT_max": 300.0,
+        "n_seg": 20,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "type": "orifice",
+      "name": "Rim seal",
+      "a": 3,
+      "b": 4,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 1,
+        "diameter": 0.005,
+        "area_override": 0.0004,
+        "cd_mode": "constant",
+        "cd": 0.6,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.25,
+        "r_b": 0.25,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ]
+}

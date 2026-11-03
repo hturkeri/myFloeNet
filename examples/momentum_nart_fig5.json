@@ -1,0 +1,175 @@
+{
+  "format": "myflownet",
+  "version": 1,
+  "title": "Momentum chambers - sudden area and direction change (θ = 45°)",
+  "description": "Validation case of Nart, 'Development of Newton Raphson Based 1D Flow Network Solver' (TEI FlowNet), Fig. 5 / Table 1: K-loss elements D = 5 mm, 250 mm, 5 mm, K = 2; inlet Pt = Ps = 5 bar, 500 K; exit Ps = 2 bar; dry air. The jet of element 1 enters momentum chamber 2; element 2 is turned by θ and recovers the jet's dynamic head as cos²θ. Flow Simulator mass flow: 9.395 / 9.282 / 9.099 / 8.948 / 8.813 g/s for θ = 0 / 30 / 45 / 60 / 90°.",
+  "settings": {
+    "max_iter": 300,
+    "tol_mass": 1e-09,
+    "tol_T": 1e-06,
+    "tol_K": 1e-07,
+    "max_dp_frac": 0.3,
+    "relax_T": 1.0,
+    "relax_V": 1.0,
+    "gas": {
+      "model": "air"
+    }
+  },
+  "display_units": {
+    "pressure": "bar",
+    "temperature": "K",
+    "length": "mm",
+    "area": "mm²",
+    "massflow": "kg/s"
+  },
+  "rotors": [
+    {
+      "id": 1,
+      "name": "Rotor",
+      "rpm": 0.0
+    }
+  ],
+  "chambers": [
+    {
+      "id": 1,
+      "name": "Node 1 (Pt = Ps = 5 bar)",
+      "x": -420,
+      "y": -60,
+      "params": {
+        "kind": "boundary",
+        "p": 500000.0,
+        "p_type": "total",
+        "T": 500.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "name": "Node 2",
+      "x": -140,
+      "y": -60,
+      "params": {
+        "kind": "momentum",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "Node 3",
+      "x": 43.84776310850236,
+      "y": 123.84776310850233,
+      "params": {
+        "kind": "momentum",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 4,
+      "name": "Node 4 (Ps = 2 bar)",
+      "x": 323.84776310850236,
+      "y": 123.84776310850233,
+      "params": {
+        "kind": "boundary",
+        "p": 200000.0,
+        "p_type": "static",
+        "T": 500.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "type": "kloss",
+      "name": "D 5 mm, K 2",
+      "a": 1,
+      "b": 2,
+      "bend": 0.0,
+      "params": {
+        "n_paths": 1,
+        "diameter": 0.005,
+        "area_override": 0.0,
+        "K": 2.0,
+        "K_rev": -1.0,
+        "K_def": "exit",
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "type": "kloss",
+      "name": "D 250 mm, K 2",
+      "a": 2,
+      "b": 3,
+      "bend": 0.0,
+      "params": {
+        "n_paths": 1,
+        "diameter": 0.25,
+        "area_override": 0.0,
+        "K": 2.0,
+        "K_rev": -1.0,
+        "K_def": "exit",
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": -45.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "type": "kloss",
+      "name": "D 5 mm, K 2 ",
+      "a": 3,
+      "b": 4,
+      "bend": 0.0,
+      "params": {
+        "n_paths": 1,
+        "diameter": 0.005,
+        "area_override": 0.0,
+        "K": 2.0,
+        "K_rev": -1.0,
+        "K_def": "exit",
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ]
+}

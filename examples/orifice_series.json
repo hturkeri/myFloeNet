@@ -1,0 +1,140 @@
+{
+  "format": "myflownet",
+  "version": 1,
+  "title": "Two orifices in series",
+  "description": "Validation case: two identical orifices between two boundaries.",
+  "settings": {
+    "max_iter": 300,
+    "tol_mass": 1e-09,
+    "tol_T": 1e-06,
+    "tol_K": 1e-07,
+    "max_dp_frac": 0.3,
+    "relax_T": 1.0,
+    "relax_V": 1.0,
+    "gas": {
+      "model": "air"
+    }
+  },
+  "display_units": {
+    "pressure": "bar",
+    "temperature": "K",
+    "length": "mm",
+    "area": "mm²",
+    "massflow": "kg/s"
+  },
+  "rotors": [
+    {
+      "id": 1,
+      "name": "Rotor",
+      "rpm": 0.0
+    }
+  ],
+  "chambers": [
+    {
+      "id": 1,
+      "name": "Supply",
+      "x": -300,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 300000.0,
+        "p_type": "total",
+        "T": 500.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "name": "Middle",
+      "x": 0,
+      "y": 0,
+      "params": {
+        "kind": "plenum",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 3,
+      "name": "Exhaust",
+      "x": 300,
+      "y": 0,
+      "params": {
+        "kind": "boundary",
+        "p": 100000.0,
+        "p_type": "total",
+        "T": 300.0,
+        "K": 0.0,
+        "ref_rotor": 1,
+        "radius": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": 1,
+      "type": "orifice",
+      "name": "Orifice 1",
+      "a": 1,
+      "b": 2,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 1,
+        "diameter": 0.01,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.7,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    },
+    {
+      "id": 2,
+      "type": "orifice",
+      "name": "Orifice 2",
+      "a": 2,
+      "b": 3,
+      "bend": 0.0,
+      "params": {
+        "n_holes": 1,
+        "diameter": 0.01,
+        "area_override": 0.0,
+        "cd_mode": "constant",
+        "cd": 0.7,
+        "cd0": 0.61,
+        "length": 0.0,
+        "corner_radius": 0.0,
+        "cd_rev": 0.0,
+        "rotor": 0,
+        "r_a": 0.0,
+        "r_b": 0.0,
+        "dq_in": 1.0,
+        "swirl_out": "auto",
+        "exit_K": 0.0,
+        "exit_angle": 0.0,
+        "direction": 0.0,
+        "heat_W": 0.0
+      }
+    }
+  ]
+}
