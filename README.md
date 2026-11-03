@@ -31,7 +31,7 @@ Ağ, motorun STEP / IGES / BREP / STL modelinin üzerine çizilebilir (Flow Simu
 
 ## Kurulum (Windows)
 
-**Hazır kurulum dosyası:** `myFlowNet-0.3.0-Setup.exe` — Python dahil her şeyi içerir, yönetici yetkisi istemez (`%LOCALAPPDATA%\Programs\myFlowNet`). Ayrıntılar ve yeniden oluşturma: `installer/README.md`.
+**Hazır kurulum dosyası:** [`dist/myFlowNet-0.3.0-Setup.exe`](dist/myFlowNet-0.3.0-Setup.exe) (59 MB; GitHub'da dosya sayfasındaki *Download raw file* düğmesiyle indirilir) — Python dahil her şeyi içerir, yönetici yetkisi istemez (`%LOCALAPPDATA%\Programs\myFlowNet`). Ayrıntılar ve yeniden oluşturma: `installer/README.md`.
 
 **Kaynaktan çalıştırma:**
 
